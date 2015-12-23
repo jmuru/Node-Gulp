@@ -1,14 +1,14 @@
 # Node-Gulp
-/ Info
 
+### Info
 for more information node, express, and gulp:
-	* <https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md>
-	* <http://expressjs.com/en/>
-
+* <https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md>
+* <http://expressjs.com/en/>
+	
 documentation for packages used:
-	* <https://babeljs.io/docs/>
-	* <https://www.browsersync.io/>
-	* <http://handlebarsjs.com/>
+* <https://babeljs.io/docs/>
+* <https://www.browsersync.io/>
+* 	<http://handlebarsjs.com/>
 
 
 Lightweight node js template with gulp integrated with browser-sync. Made to save time during dev process 
