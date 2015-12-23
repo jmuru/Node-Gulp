@@ -1,4 +1,6 @@
 var gulp = require("gulp");
+var babel = require("gulp-babel");
+var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require("browser-sync");
 var nodemon = require('gulp-nodemon');
 
@@ -28,10 +30,22 @@ gulp.task('nodemon', function (cb) {
   .on('restart', function () {
     setTimeout(function () {
       browserSync.reload();
-    }, 1000);
+    }, 1000); 
   });
 });
 
-gulp.task('default', ['browser-sync'], function () {
+gulp.task('babel', function() {
+  return gulp.src('public/es6/*.js')
+    .pipe(sourcemaps.init())
+    .pipe(babel())
+    .pipe(sourcemaps.write('.', 
+          {sourceRoot: 'public/es6/'}))
+    .pipe(gulp.dest('public/es5'));
+});
+
+gulp.task('watch', function() {
+  gulp.watch(['public/es6/*.js'], ['babel']);
   gulp.watch(['./views/*.handlebars'], browserSync.reload);
 });
+
+gulp.task('default', ['browser-sync', 'watch']);

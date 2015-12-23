@@ -13,8 +13,6 @@ var index_page = require('./routes/index.js');
 app.use('/', index_page); 
 app.use(express.static('public')); 
 
-
-
 app.listen(3000, function() {
 	console.log('listenig on port 3000.... ');
 });
