@@ -1,9 +1,5 @@
 "use strict";
 
-let x = 5;
+let testFunc = (x) => {console.log(x)}
 
-x = 4;
-const i = 9;
-
-console.log(i);
-console.log(x);
+testFunc(4);

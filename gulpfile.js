@@ -1,8 +1,8 @@
 var gulp = require("gulp");
+var sass = require("gulp-sass")
 var babel = require("gulp-babel");
-var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require("browser-sync");
-var nodemon = require('gulp-nodemon');
+var nodemon = require("gulp-nodemon");
 
 gulp.task('browser-sync', ['nodemon'], function() {
   browserSync({
@@ -30,22 +30,26 @@ gulp.task('nodemon', function (cb) {
   .on('restart', function () {
     setTimeout(function () {
       browserSync.reload();
-    }, 1000); 
+    }, 1000);
   });
 });
 
-gulp.task('babel', function() {
-  return gulp.src('public/es6/*.js')
-    .pipe(sourcemaps.init())
-    .pipe(babel())
-    .pipe(sourcemaps.write('.', 
-          {sourceRoot: 'public/es6/'}))
-    .pipe(gulp.dest('public/es5'));
-});
+gulp.task('babel', function () {
+  return gulp.src("./public/es6/*.js")
+    .pipe(babel({presets: 'es2015'}))
+    .pipe(gulp.dest("dist/js"))
+})
+
+gulp.task('sass', function () {
+  return gulp.src("./public/sass/*.scss")
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest("dist/css"))
+})
 
 gulp.task('watch', function() {
-  gulp.watch(['public/es6/*.js'], ['babel']);
   gulp.watch(['./views/*.handlebars'], browserSync.reload);
+  gulp.watch('./public/**/*.js', ['babel']);
+  gulp.watch('./public/sass/*.scss', ['sass']);
 });
 
-gulp.task('default', ['browser-sync', 'watch']);
+gulp.task('default', ['browser-sync', 'watch', 'babel', 'sass']);
