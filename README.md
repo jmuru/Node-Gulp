@@ -12,7 +12,9 @@ Install dependencies by running in terminal ```npm install```
 
 To run the task manager (gulp) as well as start your server just run ```gulp``` in the terminal and the template should begin to run in your browser
 
-This task handles live-reload for files specified by you, in this example I'm watching all pages in my views directory, all of the es6 code found in my public directory, as well as all of my sass files under the public directory.
+The following code below describes what each gulp task is doing within th gulpfile.js.
+
+The task below handles live-reload for files specified by you, in this example gulp is watching all pages in the views directory, all of the es6 code found in th public directory, as well as all of th sass files under the public directory.
 ```
 gulp.task('watch', function() {
   gulp.watch(['./views/*.handlebars'], browserSync.reload);
@@ -30,7 +32,7 @@ gulp.task('babel', function () {
 });
 ```
 
-This task converts all of my sass file into normal css, and saves it within the dist directory
+This task converts all of the sass file into css, and saves it within the dist directory
 ```
 gulp.task('sass', function () {
   return gulp.src("./public/sass/*.scss")
@@ -38,7 +40,7 @@ gulp.task('sass', function () {
     .pipe(gulp.dest("dist/css"))
 });
 ```
-This task handles the browser-sync / live-reload
+This task handles the browser-sync / live-reload features
 ```
 gulp.task('browser-sync', ['nodemon'], function() {
   browserSync({
@@ -49,7 +51,8 @@ gulp.task('browser-sync', ['nodemon'], function() {
 });
 ```
 
-The default task (called when you run `gulp` in the terminal window), which then uses all of the functions above
+The default task (called when you run `gulp` in the terminal window), which then executes all of the specified tasks within gulpfile.js
+
 ```
 // default task
 gulp.task('default', ['browser-sync', 'watch', 'babel', 'sass']);
